@@ -5,6 +5,30 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-04: Data quality
+
+### What was done
+
+- Counted and plotted missing values (table and heatmap), checked duplicates (none), checked why the gaps exist.
+- Wrote the decision table (column, % missing, decision, reason) in the notebook. Nothing is modified yet.
+
+### Decisions and why
+
+- **The gaps have causes, they are not random:** `state` is only asked in the US, the 18 empty `self_employed` are the first rows (question added later), 260 of 264 empty `work_interfere` are people without treatment.
+- **`comments` and `state`: drop the column.** Free text almost empty; we compare countries, not states.
+- **`work_interfere`: keep, fill with `No aplica`.** Dropping rows would remove 42% of the people without treatment and bias the comparison; pandas and seaborn also ignore NaN silently in plots.
+- **`self_employed`: keep, fill with `Desconocido`.** Only 18 rows and we do not know the answer, so we do not invent one.
+- Decisions are applied in the cleaning issue, not here.
+
+### Alternatives rejected
+
+- Filling `self_employed` with the most frequent value (`No`): probable but invented.
+- Dropping rows with empty `work_interfere`: biased.
+
+### Where we stopped
+
+- Next: issue on cleaning (ages, gender, applying today's decisions).
+
 ## 2026-11-04: Refined questions
 
 ### What was done
