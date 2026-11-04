@@ -5,6 +5,27 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-04: Refined questions
+
+### What was done
+
+- Question 1 now uses `Gender`, `Age`, `family_history`, `no_employees` and `remote_work` as factors of `treatment` (`Country` removed).
+- Question 3 now compares `mental_health_consequence`, `supervisor` and `coworkers` by `tech_company` only.
+
+### Decisions and why
+
+- **Company size and remote work move to question 1:** Charlotte wanted to see whether they change who seeks treatment, next to family history. Employer support stays in question 2.
+- **Percentages inside each group:** groups have very different sizes, so counts would mislead.
+- **`Country` dropped from question 1:** about 60% of answers come from the US.
+
+### Alternatives rejected
+
+- A fourth question only about company size: employer support (question 2) already covers it.
+
+### Where we stopped
+
+- The hypothesis of question 3 is a first guess, to review when we look at the data. Next: data quality issue (missing values, duplicates).
+
 ## 2026-11-04: Load and first look
 
 ### What was done
