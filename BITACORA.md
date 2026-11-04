@@ -5,6 +5,30 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-04: Load and first look
+
+### What was done
+
+- Imported pandas, matplotlib, seaborn and loaded `data/survey.csv` with `na_values=["NA"]`.
+- First look: `head`, `shape`, `info`, `isna().sum()`, `describe` (numeric and text), `columns`, with a short Spanish note after each output.
+- Wrote a personal column dictionary (`COLUMNAS_PERSO.md`), kept out of git through `.git/info/exclude`.
+
+### Decisions and why
+
+- **`na_values=["NA"]` at load time:** otherwise pandas reads "NA" as text and the missing values are invisible.
+- **Age outliers only spotted, not fixed:** -1726, -29, -1, 5, 8, 11, 329 and 99999999999. They break the mean (7.9e+07) but not the median (31). Cleaning belongs to the data quality issue.
+- **`describe(include="str")`:** pandas 3 deprecates `include="object"` for text columns.
+- **`treatment` is balanced** (about 51% Yes), so no need to rebalance.
+- **Notebook merged with known typos** in a few Spanish notes and 3 empty Markdown cells; to be fixed later.
+
+### Alternatives rejected
+
+- None: only exploration, no modelling choice yet.
+
+### Where we stopped
+
+- Idea to refine the questions: move `no_employees` and `remote_work` from question 3 to question 1 (factors of `treatment`, together with `family_history`). Next: branch `docs/refine-questions`, then the data quality issue.
+
 ## 2026-11-04: Starting questions
 
 ### What was done
