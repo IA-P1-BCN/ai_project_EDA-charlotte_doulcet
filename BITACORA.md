@@ -5,6 +5,36 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-05: Univariate analysis and outliers
+
+### What was done
+
+- Section 7.1: one chart and one short Spanish note per variable. `Age` (histogram + boxplot), `treatment`, `identities`, `family_history`, `no_employees`, `anonymity` (count plots) and `Country` (top 5 countries).
+- Section 7.3: outliers in `Age` with the IQR rule (limits 13.5 and 49.5): 32 values (2.6%), all real ages from 50 to 72.
+
+### Decisions and why
+
+- **Chart chosen by variable type** (guide: data-to-viz.com): histogram and boxplot for a number, count plot for categories.
+- **Extra variables beyond the 3 required:** `family_history`, `no_employees`, `anonymity` are the factors of questions 1 and 3, so we check group sizes before comparing; `Country` only to state a limit.
+- **`Country`: show only the top 5.** 48 countries, most with 1-5 answers, so a full chart is unreadable. The top 5 hold 85.8% of the answers (US alone 59.7%). Data stays in `df_clean`.
+- **`no_employees` and `anonymity` use a fixed `order=`:** sizes have a natural order, and the answers read better as Yes / No / Don't know.
+- **Outliers: keep the 32 values.** They are possible ages (older workers), not errors; removing them would lose valid answers and bias towards younger people. The impossible ages (8) were already set to NaN in 6.3. IQR finds 40 outliers before cleaning and 32 after.
+
+### Alternatives rejected
+
+- Chart of all 48 countries: unreadable.
+- Capping or removing ages above 49.5: would hide real respondents.
+
+### Limits found (for section 9)
+
+- `Trans / non-binary / other`: 14 people; `anonymity = No`: 65 people; `no_employees = 500-1000`: 60 people. Results for these groups are indicative only.
+- About 60% of the answers come from the US.
+- `treatment` is balanced (50.6% Yes) but measures who sought treatment, not who suffers.
+
+### Where we stopped
+
+- Next: section 7.2 (bivariate analysis), issue #7.
+
 ## 2026-11-05: Data cleaning
 
 ### What was done
