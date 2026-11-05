@@ -5,6 +5,47 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-05: Data cleaning
+
+### What was done
+
+- Made `df_clean = df.copy()`; all cleaning happens on the copy, `df` and `data/survey.csv` stay raw.
+- Applied the data quality decisions: dropped `comments` and `state`, filled `work_interfere` with `No aplica` and `self_employed` with `Desconocido`. No empty cells left except the ones created below.
+- `Age`: values outside 18-80 set to NaN (8 rows). Mean went from 7.9e+07 to 32.1, min 18, max 72, dtype float64.
+- `Gender` cleaned and `identities` created: Male 994, Female 247, Trans / non-binary / other 14, NaN 4 (total 1259).
+- Question 3 now compares `mental_health_consequence`, `supervisor` and `coworkers` by `anonymity` (was `tech_company`).
+- Reorganised the notebook into fixed sections 1-9 (intro, questions, load, first look, data quality, cleaning, and placeholders for the rest), with a Spanish note after each step.
+
+### Decisions and why
+
+- **`Age` valid range 18-80 (Charlotte's choice).** People answering are working adults. Out-of-range values become NaN and the row is kept: the other answers are still useful and we do not invent an age.
+- **`Gender`: keep the column, fix only what is clear.** Classify by what the person wrote, not by our guess.
+  - Typos, case and `cis` variants become `Male` or `Female` (`cis male`, `male (cis)`, `cis man`, `cis female`, `female (cis)`, `cis-female/femme`, `make`, `maile`, `femail`...).
+  - Hedged answers that contain the word male (`Male-ish`, `Guy (-ish)`, `something kinda male?`, `ostensibly male...`) go to `Male`: they wrote male.
+  - Answers that are not a gender (`Nah`, `All`, `p`, `A little about you`) become NaN.
+  - Trans, non-binary, fluid, queer, agender, etc. stay untouched in `Gender`, as written.
+  - `male leaning androgynous` goes to the third group (Charlotte's choice): `androgynous` is the identity, `male leaning` only a tendency. So it stays untouched in `Gender`.
+- **New column `identities` (name given by the teacher), 3 values:** `Male`, `Female`, `Trans / non-binary / other` (NaN where `Gender` is NaN). Analyses use `identities`; `Gender` stays for detail. Trans women and trans men go in the third group by choice, not because they are not women or men; to say so in the notebook.
+- **Full words `Male` and `Female`, not `M` and `F`:** readable in plots and coherent with the other columns (`Yes`, `No`).
+- **Question 3 by `anonymity`, no rows dropped:** about 18% of respondents are not in a tech company, but dropping those 228 rows loses real answers. Anonymity is what the question is really about. Only 65 people answered `No` to anonymity, so that group is small.
+- **`Timestamp`: convert to datetime and keep, but no trend analysis.** 1190 of 1259 answers are from 2014 (1135 in August 2014), 68 from 2015 and 1 from 2016. Comparing years would not be reliable. We keep the column (the brief asks to fix types, and dropping it loses information); for the "trends or group comparison" requirement we compare groups instead. To state in the limits section.
+- **Small groups:** 14 answers in the third group out of 1259, so results for the third group are indicative only.
+- **Why not 3 categories with everything else in `Other`:** it mixed real identities with non-answers.
+
+### Alternatives rejected
+
+- Trans women in `Female`: clean on paper, but Charlotte preferred to keep trans people together in one visible group.
+- Mapping non-answers to `Other`: would count `p` as an identity.
+- Deleting rows with absurd ages: loses valid answers.
+
+### Where we stopped
+
+- Added section 5.5 (data types) and 6.5 (`Timestamp` to datetime) in the notebook.
+- Saved `data/survey_clean.csv` (1259 rows, 26 columns, `index=False`). A CSV does not keep types, so reading it back needs `parse_dates=["Timestamp"]`.
+- Issue done. Next: univariate analysis.
+- To ask the teacher: drop `Gender` or keep it in the clean file? For now both columns are kept (dropping later is one line).
+- The notebook runs top to bottom with no error (Run All).
+
 ## 2026-11-04: Data quality
 
 ### What was done
