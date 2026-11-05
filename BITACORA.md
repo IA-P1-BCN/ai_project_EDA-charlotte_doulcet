@@ -41,8 +41,10 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 ### Where we stopped
 
 - Added section 5.5 (data types) and 6.5 (`Timestamp` to datetime) in the notebook.
-- Still to do in this issue: save `data/survey_clean.csv` (6.6).
+- Saved `data/survey_clean.csv` (1259 rows, 26 columns, `index=False`). A CSV does not keep types, so reading it back needs `parse_dates=["Timestamp"]`.
+- Issue done. Next: univariate analysis.
 - To ask the teacher: drop `Gender` or keep it in the clean file? For now both columns are kept (dropping later is one line).
+- The notebook runs top to bottom with no error (Run All).
 
 ## 2026-11-04: Data quality
 
