@@ -28,6 +28,7 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 - **New column `identities` (name given by the teacher), 3 values:** `Male`, `Female`, `Trans / non-binary / other` (NaN where `Gender` is NaN). Analyses use `identities`; `Gender` stays for detail. Trans women and trans men go in the third group by choice, not because they are not women or men; to say so in the notebook.
 - **Full words `Male` and `Female`, not `M` and `F`:** readable in plots and coherent with the other columns (`Yes`, `No`).
 - **Question 3 by `anonymity`, no rows dropped:** about 18% of respondents are not in a tech company, but dropping those 228 rows loses real answers. Anonymity is what the question is really about. Only 65 people answered `No` to anonymity, so that group is small.
+- **`Timestamp`: convert to datetime and keep, but no trend analysis.** 1190 of 1259 answers are from 2014 (1135 in August 2014), 68 from 2015 and 1 from 2016. Comparing years would not be reliable. We keep the column (the brief asks to fix types, and dropping it loses information); for the "trends or group comparison" requirement we compare groups instead. To state in the limits section.
 - **Small groups:** 14 answers in the third group out of 1259, so results for the third group are indicative only.
 - **Why not 3 categories with everything else in `Other`:** it mixed real identities with non-answers.
 
@@ -39,7 +40,8 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ### Where we stopped
 
-- Still to do in this issue: convert `Timestamp` to datetime (6.5), save `data/survey_clean.csv` (6.6).
+- Added section 5.5 (data types) and 6.5 (`Timestamp` to datetime) in the notebook.
+- Still to do in this issue: save `data/survey_clean.csv` (6.6).
 - To ask the teacher: drop `Gender` or keep it in the clean file? For now both columns are kept (dropping later is one line).
 
 ## 2026-11-04: Data quality
