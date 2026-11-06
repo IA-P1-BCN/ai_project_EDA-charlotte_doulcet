@@ -5,6 +5,37 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Bivariate analysis, question 3 (7.2 done)
+
+### What was done
+
+- 7.2.3 done: `mental_health_consequence`, `supervisor` and `coworkers` by `anonymity`, each with a crosstab in percent and a 100% stacked bar chart, plus the summary table. Section 7.2 is complete (12 relations).
+
+### Decisions and why
+
+- **100% stacked bars** (`plot(kind="bar", stacked=True)`): the question is how the answers are split inside each anonymity group, not a single "Yes" rate.
+- **Legend outside the plot** (`bbox_to_anchor`): inside, it hid the first bar.
+- **"Yes" does not always mean the same.** `mental_health_consequence`: Yes = fears negative consequences (bad sign). `supervisor` / `coworkers`: Yes = would talk (good sign). Each note says which one it reads.
+- **Columns ordered from least to most open** (`No`, `Some of them`/`Maybe`, `Yes`) so the stacks read the same way.
+- **`Don't know` kept as its own group** (819 people), never merged with `No`.
+
+### Results (question 3, by `anonymity` Yes / No / Don't know)
+
+- `mental_health_consequence`, fears consequences: 15.2% / 64.6% / 23.6% (49 points).
+- `supervisor`, would talk: 54.4% / 21.5% / 36.4% (33 points).
+- `coworkers`, would talk: 22.7% / 12.3% / 16.1% (10 points); "Some of them" is the main answer in all groups (47.7% to 63.0%).
+
+### Limits found (for section 9)
+
+- `anonymity = No` has only 65 people (8 say Yes for coworkers): strong gaps but indicative.
+- A relation is not a cause.
+
+### Where we stopped
+
+- Next: section 8 (answer each starting question using the summary tables of 7.2), then section 9.
+
+---
+
 ## 2026-11-06: Bivariate analysis, question 2 (in progress)
 
 ### What was done
