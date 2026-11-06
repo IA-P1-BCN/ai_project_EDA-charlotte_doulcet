@@ -5,6 +5,25 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Visualization review
+
+### What was done
+
+- Audited the 21 charts of the notebook against the checklist of issue #8 (title, named axes, legend when needed). The brief asks for at least 5.
+- Fixed the two gaps: axis names on the missing-values heatmap (5.1) and `plt.tight_layout()` on the first stacked-bar chart of 7.2.3, so its legend is not cut off.
+
+### Decisions and why
+
+- **No extra checklist table in the notebook:** the audit result is kept here and in the PR; the charts themselves already comply.
+- **Single-series bar charts have no legend:** it would repeat the axis title. Stacked bars have one.
+- **Boxplot of `Age` has no y label:** its vertical axis measures nothing.
+
+### Where we stopped
+
+- Next: README (#10); then the medium-level issues still open: group and summarize (#12), feature engineering (#13), correlation heatmap (#14), trends or group comparison (#15), executive report (#16).
+
+---
+
 ## 2026-11-06: Written answers and conclusions (sections 8 and 9)
 
 ### What was done
