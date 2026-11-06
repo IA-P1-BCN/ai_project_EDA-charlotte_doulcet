@@ -5,6 +5,33 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Group and summarize (section 7.4)
+
+### What was done
+
+- Added section 7.4 with three summary tables: age by identity (`groupby` + `agg`), treatment rate by company size (named aggregation), treatment rate by age group and family history (`pivot_table`, plus a count pivot).
+- Created the helper column `treatment_yes` (1/0) in `df_clean`, so a mean gives a percentage.
+
+### Decisions and why
+
+- **`treatment_yes` is a numeric copy of `treatment`:** `mean()` of a 0/1 column is the share of "Yes", which makes the tables short. It is reusable for feature engineering (#13).
+- **Count pivot next to the rate pivot:** a rate means little without its group size.
+- **`age_group` and `treatment_yes` are not saved in `survey_clean.csv`:** they are analysis choices and live in `df_clean` in the notebook.
+
+### Results
+
+- With family history the treatment rate is about 74% at every age; without it the rate rises with age (31.0% to 50.0%). The age trend comes from people without family history.
+
+### Limits found
+
+- The 46+ cells are small (n=38 with family history, n=18 without): indicative only.
+
+### Where we stopped
+
+- Next: README (#10, waiting), then #13 feature engineering, #14 correlation heatmap, #15 trends or group comparison, #16 executive report.
+
+---
+
 ## 2026-11-06: Visualization review
 
 ### What was done
