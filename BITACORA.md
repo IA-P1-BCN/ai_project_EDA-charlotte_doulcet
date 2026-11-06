@@ -5,6 +5,29 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Written answers and conclusions (sections 8 and 9)
+
+### What was done
+
+- Section 8: one block per starting question (hypothesis, numbers taken from the 7.2 summary tables, answer, precautions).
+- Section 9: three main conclusions, the idea that links them, and 8 limits.
+
+### Decisions and why
+
+- **Own branch (`feature/written-answers`, issue #9)**, not inside `feature/bivariate-analysis` (issue #7): one issue = one branch. It was started from the bivariate branch because sections 8 and 9 read the 7.2 results; it must be rebased onto `dev` once PR #7 is merged.
+- **Answers: P1 partly confirmed, P2 confirmed, P3 confirmed with different strength.** P1: family history (39 points) and women vs men (23 points) hold; the trans group is higher but has 14 people, so "Female is the highest" cannot be confirmed; company size and remote work show nothing clear. P3: clear for fear of consequences (49 points) and supervisor (33 points), small for coworkers (10 points).
+- **Section 8 answers each question; section 9 looks at the whole project** (main findings, limits). Limits are all in one place (9.2).
+
+### Limits found (for section 9)
+
+- All listed in 9.2: relation is not a cause, `treatment` is not who suffers, small groups (14, 65, 56, 60), mostly men and US, answers from one month (Aug 2014), voluntary survey, rows lost in cleaning, overlapping variables.
+
+### Where we stopped
+
+- Next: push `feature/bivariate-analysis` and open PR #7 into `dev`; after the merge, rebase `feature/written-answers` and open PR for #9. Then README (#10) and executive report (#16).
+
+---
+
 ## 2026-11-06: Bivariate analysis, question 3 (7.2 done)
 
 ### What was done
