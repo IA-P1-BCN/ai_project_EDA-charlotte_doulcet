@@ -5,6 +5,36 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Bivariate analysis, question 2 (in progress)
+
+### What was done
+
+- 7.2.2 done: `treatment` by `benefits`, `care_options`, `wellness_program` and `seek_help`. Same method as 7.2.1 (crosstab in percent, bar chart, short note), plus the summary table of the block.
+
+### Decisions and why
+
+- **"Don't know" / "Not sure" is kept as its own group**, never merged with "No": someone who does not know may simply never have needed the resource.
+- **Each variable is read for what it asks:** `benefits` = the company offers it; `care_options` = the person *knows* the options (knowledge, not offer); `wellness_program` and `seek_help` = a program / resources exist. The notes use the right verb for each.
+- **Notes describe one column only** (% with `treatment = Yes` inside each group); the "No" column is its complement.
+
+### Results (question 2, % with `treatment = Yes`)
+
+- `benefits`: Yes 63.9%, No 48.4%, Don't know 37.0% (15 points).
+- `care_options`: Yes 69.1%, No 41.3%, Not sure 39.2% (28 points, the biggest).
+- `wellness_program`: Yes 59.4%, No 49.9%, Don't know 43.1% (9.5 points; groups of 229 / 842 / 188).
+- `seek_help`: Yes 59.2%, No 50.0%, Don't know 45.7% (9 points).
+
+### Limits found (for section 9)
+
+- A relation is not a cause: people who seek treatment may learn more about the company's resources (reverse direction).
+- The four variables overlap (same topic), so they are not four independent proofs.
+
+### Where we stopped
+
+- Next: 7.2.3 (`mental_health_consequence`, `supervisor`, `coworkers` by `anonymity`, 100% stacked bars).
+
+---
+
 ## 2026-11-06: Bivariate analysis, question 1 (in progress)
 
 ### What was done
