@@ -5,6 +5,107 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Bivariate analysis, question 3 (7.2 done)
+
+### What was done
+
+- 7.2.3 done: `mental_health_consequence`, `supervisor` and `coworkers` by `anonymity`, each with a crosstab in percent and a 100% stacked bar chart, plus the summary table. Section 7.2 is complete (12 relations).
+
+### Decisions and why
+
+- **100% stacked bars** (`plot(kind="bar", stacked=True)`): the question is how the answers are split inside each anonymity group, not a single "Yes" rate.
+- **Legend outside the plot** (`bbox_to_anchor`): inside, it hid the first bar.
+- **"Yes" does not always mean the same.** `mental_health_consequence`: Yes = fears negative consequences (bad sign). `supervisor` / `coworkers`: Yes = would talk (good sign). Each note says which one it reads.
+- **Columns ordered from least to most open** (`No`, `Some of them`/`Maybe`, `Yes`) so the stacks read the same way.
+- **`Don't know` kept as its own group** (819 people), never merged with `No`.
+
+### Results (question 3, by `anonymity` Yes / No / Don't know)
+
+- `mental_health_consequence`, fears consequences: 15.2% / 64.6% / 23.6% (49 points).
+- `supervisor`, would talk: 54.4% / 21.5% / 36.4% (33 points).
+- `coworkers`, would talk: 22.7% / 12.3% / 16.1% (10 points); "Some of them" is the main answer in all groups (47.7% to 63.0%).
+
+### Limits found (for section 9)
+
+- `anonymity = No` has only 65 people (8 say Yes for coworkers): strong gaps but indicative.
+- A relation is not a cause.
+
+### Where we stopped
+
+- Next: section 8 (answer each starting question using the summary tables of 7.2), then section 9.
+
+---
+
+## 2026-11-06: Bivariate analysis, question 2 (in progress)
+
+### What was done
+
+- 7.2.2 done: `treatment` by `benefits`, `care_options`, `wellness_program` and `seek_help`. Same method as 7.2.1 (crosstab in percent, bar chart, short note), plus the summary table of the block.
+
+### Decisions and why
+
+- **"Don't know" / "Not sure" is kept as its own group**, never merged with "No": someone who does not know may simply never have needed the resource.
+- **Each variable is read for what it asks:** `benefits` = the company offers it; `care_options` = the person *knows* the options (knowledge, not offer); `wellness_program` and `seek_help` = a program / resources exist. The notes use the right verb for each.
+- **Notes describe one column only** (% with `treatment = Yes` inside each group); the "No" column is its complement.
+
+### Results (question 2, % with `treatment = Yes`)
+
+- `benefits`: Yes 63.9%, No 48.4%, Don't know 37.0% (15 points).
+- `care_options`: Yes 69.1%, No 41.3%, Not sure 39.2% (28 points, the biggest).
+- `wellness_program`: Yes 59.4%, No 49.9%, Don't know 43.1% (9.5 points; groups of 229 / 842 / 188).
+- `seek_help`: Yes 59.2%, No 50.0%, Don't know 45.7% (9 points).
+
+### Limits found (for section 9)
+
+- A relation is not a cause: people who seek treatment may learn more about the company's resources (reverse direction).
+- The four variables overlap (same topic), so they are not four independent proofs.
+
+### Where we stopped
+
+- Next: 7.2.3 (`mental_health_consequence`, `supervisor`, `coworkers` by `anonymity`, 100% stacked bars).
+
+---
+
+## 2026-11-06: Bivariate analysis, question 1 (in progress)
+
+### What was done
+
+- Section 7.2 structure: one block per starting question (7.2.1, 7.2.2, 7.2.3), one block per relation, and a summary table at the end of each block. 12 relations in total, as many as the 3 questions need (the brief asks for at least 3).
+- 7.2.1 done: `treatment` by `family_history`, `identities`, `Age` (in groups), `no_employees` and `remote_work`. Each has a crosstab in percent, a bar chart, and a short note ("Qué vemos" / "Interpretación").
+
+### Decisions and why
+
+- **Number of relations = what the questions need.** Not more just to have more, not fewer than the 3 required.
+- **Crosstab with `normalize="index"`:** the percentage is computed inside each group, so groups of different sizes can be compared.
+- **Conclusions per question go to section 8, not to 7.2.** In 7.2 each relation only describes what the chart shows; the summary table collects the numbers for section 8.
+- **Age groups: 18-25, 26-35, 36-45, 46+** (column `age_group`, `pd.cut`). 4 groups keep every group big enough and the chart readable. The 8 NaN ages are left out.
+- **`age_group` is created in 7.2, not in section 6.** It is an analysis choice for question 1, not a fix of wrong data (unlike `identities`, which came with the messy `Gender`). It is not saved in `survey_clean.csv`.
+- **Notebook outline:** per-relation labels stay in bold (same style as 7.1); the summary of each question is a level-5 heading under its block.
+
+### Results (question 1, % with `treatment = Yes`)
+
+- `family_history`: No 35.5%, Yes 74.2% (39 points, the biggest gap).
+- `identities`: Male 45.5%, Female 68.8%, Trans / non-binary / other 78.6% (14 people only).
+- `Age` groups: 48.4%, 48.6%, 55.2%, 58.9% (soft upward trend).
+- `no_employees`: between 44.1% (6-25) and 56.2% (1-5), no clear trend.
+- `remote_work`: No 49.7%, Yes 52.7% (3 points, almost nothing).
+
+### Alternatives rejected
+
+- 5 age groups of 5 years: same trend, more bars, nothing more to say.
+- Moving `age_group` to the cleaning section: would change sections 5 and 6 and the saved CSV for one column used once.
+
+### Limits found (for section 9)
+
+- `Age` 46+: 56 people; relation is weak and only indicative.
+- A relation is not a cause. Idea not tested: `work_interfere` could explain part of who seeks treatment (needs 3 variables).
+
+### Where we stopped
+
+- Next: 7.2.2 (`benefits`, `care_options`, `wellness_program`, `seek_help`), then 7.2.3 (`anonymity`).
+
+---
+
 ## 2026-11-05: Univariate analysis and outliers
 
 ### What was done
