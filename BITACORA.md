@@ -5,6 +5,46 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-06: Bivariate analysis, question 1 (in progress)
+
+### What was done
+
+- Section 7.2 structure: one block per starting question (7.2.1, 7.2.2, 7.2.3), one block per relation, and a summary table at the end of each block. 12 relations in total, as many as the 3 questions need (the brief asks for at least 3).
+- 7.2.1 done: `treatment` by `family_history`, `identities`, `Age` (in groups), `no_employees` and `remote_work`. Each has a crosstab in percent, a bar chart, and a short note ("Qué vemos" / "Interpretación").
+
+### Decisions and why
+
+- **Number of relations = what the questions need.** Not more just to have more, not fewer than the 3 required.
+- **Crosstab with `normalize="index"`:** the percentage is computed inside each group, so groups of different sizes can be compared.
+- **Conclusions per question go to section 8, not to 7.2.** In 7.2 each relation only describes what the chart shows; the summary table collects the numbers for section 8.
+- **Age groups: 18-25, 26-35, 36-45, 46+** (column `age_group`, `pd.cut`). 4 groups keep every group big enough and the chart readable. The 8 NaN ages are left out.
+- **`age_group` is created in 7.2, not in section 6.** It is an analysis choice for question 1, not a fix of wrong data (unlike `identities`, which came with the messy `Gender`). It is not saved in `survey_clean.csv`.
+- **Notebook outline:** per-relation labels stay in bold (same style as 7.1); the summary of each question is a level-5 heading under its block.
+
+### Results (question 1, % with `treatment = Yes`)
+
+- `family_history`: No 35.5%, Yes 74.2% (39 points, the biggest gap).
+- `identities`: Male 45.5%, Female 68.8%, Trans / non-binary / other 78.6% (14 people only).
+- `Age` groups: 48.4%, 48.6%, 55.2%, 58.9% (soft upward trend).
+- `no_employees`: between 44.1% (6-25) and 56.2% (1-5), no clear trend.
+- `remote_work`: No 49.7%, Yes 52.7% (3 points, almost nothing).
+
+### Alternatives rejected
+
+- 5 age groups of 5 years: same trend, more bars, nothing more to say.
+- Moving `age_group` to the cleaning section: would change sections 5 and 6 and the saved CSV for one column used once.
+
+### Limits found (for section 9)
+
+- `Age` 46+: 56 people; relation is weak and only indicative.
+- A relation is not a cause. Idea not tested: `work_interfere` could explain part of who seeks treatment (needs 3 variables).
+
+### Where we stopped
+
+- Next: 7.2.2 (`benefits`, `care_options`, `wellness_program`, `seek_help`), then 7.2.3 (`anonymity`).
+
+---
+
 ## 2026-11-05: Univariate analysis and outliers
 
 ### What was done
