@@ -5,6 +5,39 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Correlation matrix and heatmap (section 7.6)
+
+### What was done
+
+- Added section 7.6: `df_num` (all Yes/No columns as 0/1), correlation matrix, heatmap (lower triangle only) and a written interpretation with limits.
+- 15 variables: 5 pure Yes/No, 8 multi-answer columns as "Yes = 1, rest = 0", `is_female` and `Age`.
+
+### Decisions and why
+
+- **Separate table `df_num`:** `df_clean` keeps its text columns.
+- **Multi-answer columns as "is Yes":** same rule as `support_score`, so "Don't know", "Not sure", "Maybe" and "Some of them" count as 0. Simple, but it merges them with "No"; written as a limit.
+- **`is_female` instead of `identities`:** one 0/1 column for the biggest gap found in 7.2.1. The third group (14 people) falls in the 0.
+- **Left out:** `support_score` (sum of columns already in the matrix), `self_employed` (3 values, 146 Yes), columns with many categories (`Country`, `no_employees`, `leave`, `work_interfere`).
+- **Pearson on 0/1 columns** (phi coefficient) and a simple reading rule: <0.1 almost nothing, 0.1-0.3 weak, 0.3-0.5 moderate, >0.5 strong.
+
+### Results
+
+- With `treatment`: `family_history` 0.38, `care_options` 0.27, `benefits` 0.21, `is_female` 0.18, `obs_consequence` 0.16, `anonymity` 0.13; the rest below 0.1. No variable passes 0.4.
+- Strongest pairs: `wellness_program`-`seek_help` 0.60, `benefits`-`seek_help` 0.45, `supervisor`-`coworkers` 0.43, `benefits`-`care_options` 0.43. `mental_health_consequence`-`supervisor` is -0.35 because "Yes" means opposite things.
+- Confirms 7.2 and shows that the support variables overlap (the reason for `support_score`).
+
+### Limits found (for section 9)
+
+- Correlation is not cause (reverse direction possible).
+- 0/1 correlation depends on group sizes (rare "Yes" caps the value); only linear, pairwise relations; "Yes = 1, rest = 0" loses the "Don't know" vs "No" difference.
+- `Age` correlation is weak (0.07) although 7.2.1 showed a soft trend.
+
+### Where we stopped
+
+- Issue #14 done (waiting for review and merge). Next: README (#10, waiting), #15 trends or group comparison, #16 executive report.
+
+---
+
 ## 2026-11-09: Feature engineering (section 7.5)
 
 ### What was done
