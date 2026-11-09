@@ -5,6 +5,27 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Executive report (issue #16)
+
+### What was done
+
+- Wrote `report/INFORME.md` (Spanish, non-technical) with 4 findings, each with one chart in `report/figures/`: family history and gender, support score, anonymity, country comparison. Plus recommendations and limits in plain language.
+
+### Decisions and why
+
+- **Markdown + PNG, no PDF:** the issue accepts either; pandoc is not installed and a PDF can be printed from the editor if the teacher wants it.
+- **More than 2 pages is fine:** the issue says 1 to 2 pages, but the teacher told Charlotte it is not a problem. 4 findings instead of 3.
+- **No technical names** (no `treatment`, `support_score`, no code): the reader is a non-technical person. The score is explained as "how many of 5 supports the company offers".
+- **Third group of `identities` (14 people) left out of the gender chart** and said so in the text: comparing a 14-person group would mislead.
+- **Recommendations included** as ideas, with a sentence saying they are not proven effects.
+- **Charts made with a one-off script outside the repo:** only the PNGs are committed. Numbers were taken from `survey_clean.csv` and match the notebook (sections 7.2, 7.5, 7.7).
+
+### Where we stopped
+
+- Issue #16 done. Next: README (#10, waiting). Sections 8 and 9 of the notebook do not yet mention the correlation matrix (7.6) or the country comparison (7.7); to review if the teacher wants them there.
+
+---
+
 ## 2026-11-09: Group comparison by country (section 7.7)
 
 ### What was done
