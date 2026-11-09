@@ -5,6 +5,26 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Repository README (issue #10)
+
+### What was done
+
+- Wrote `README.md` in Spanish (the teacher reads it): summary of findings, data source, install steps, how to run the notebook, repository structure and notebook outline.
+
+### Decisions and why
+
+- **Data source = OSMI page and the Kaggle dataset page.** Both links were written from memory and not opened; to check before the delivery.
+- **Run steps use VS Code and the `.venv` kernel,** as in CLAUDE.md, with the macOS/Linux and Windows activation commands.
+- **Told the reader that the notebook rewrites `data/survey_clean.csv`** (section 6.6) and must be opened from the project root (relative path to `data/survey.csv`).
+- **Short findings block with a link to the report,** not a copy of it, so the numbers live in one place.
+- **Not verified:** a clean install from scratch (new venv + Run All). `requirements.txt` includes `appnope`, which is macOS-only in practice; it should install elsewhere but was not tested.
+
+### Where we stopped
+
+- Issue #10 done. All issues are closed. Left: sections 8 and 9 of the notebook do not mention 7.6 and 7.7 yet (optional).
+
+---
+
 ## 2026-11-09: Executive report (issue #16)
 
 ### What was done
