@@ -67,4 +67,4 @@ El notebook lee `data/survey.csv` con una ruta relativa, así que hay que abrirl
 
 ## Tareas y organización
 
-Las tareas están en el proyecto de GitHub IA-P1-BCN (una issue por rama, PR hacia `dev`). Las decisiones y sus motivos están en [`BITACORA.md`](BITACORA.md).
+Las tareas están en el [proyecto de GitHub IA-P1-BCN](https://github.com/orgs/IA-P1-BCN/projects/51) (una issue por rama, PR hacia `dev`). Las decisiones y sus motivos están en [`BITACORA.md`](BITACORA.md).
