@@ -5,6 +5,36 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Group comparison by country (section 7.7)
+
+### What was done
+
+- Added section 7.7 for issue #15: why no time trend, then a comparison of the top 5 countries (people, % with `treatment = Yes`, mean `support_score`) with a table, two bar charts and a conclusion.
+
+### Decisions and why
+
+- **No time trend, group comparison instead:** 1190 of 1259 answers are from 2014 (1135 in Aug 2014), 68 from 2015, 1 from 2016. A line chart would show sample size, not a trend. Same decision as in 6.5, now written in 7.7. A chart of answers per month was considered and dropped (Charlotte: not useful; the numbers in the text are enough).
+- **Country, top 5 (same as 7.1):** country was dropped from question 1 because of the weight of the US; here it is used only to compare. Group sizes shown in the axis labels.
+- **Two measures per country:** treatment rate and mean `support_score` (from 7.5.3), to see whether support and treatment follow each other across countries.
+
+### Results
+
+- Treatment: US 54.6% (n=751), Canada 51.4% (72), UK 50.3% (185), Germany 46.7% (45), Netherlands 33.3% (27).
+- Mean `support_score`: US 1.7, Canada 1.4, UK 0.8, Germany 0.8, Netherlands 0.9.
+- Conclusion: countries are similar in who seeks treatment (47-55% in the four countries above 30 people), although US and Canadian companies offer more support. Support does not explain the country gaps by itself.
+
+### Limits found (for section 9)
+
+- Netherlands (27) and Germany (45) are small groups; one person moves the Netherlands rate about 4 points.
+- Who answers differs by country (women: 24.0% of US answers, 2.2% of German ones), so part of the gap may come from the respondents, not the country.
+- A relation is not a cause.
+
+### Where we stopped
+
+- Issue #15 done. Next: README (#10, waiting), #16 executive report.
+
+---
+
 ## 2026-11-09: Correlation matrix and heatmap (section 7.6)
 
 ### What was done
