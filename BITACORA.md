@@ -5,6 +5,45 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Feature engineering (section 7.5)
+
+### What was done
+
+- Added section 7.5 with the three engineered variables of issue #13: `age_group` (created in 7.2.1), `identities` (created in 6.4) and the new `support_score`. Each has a short "why", its limit, and the chart where it is used.
+- `support_score`: number of "Yes" in `benefits`, `care_options`, `wellness_program`, `seek_help` and `anonymity` (0 to 5).
+
+### Decisions and why
+
+- **Reuse two existing columns as engineered variables:** `age_group` and `identities` were already built for earlier issues, so 7.5 explains them and shows their chart again instead of duplicating work. Only one column was missing to reach three.
+- **Third variable = `support_score`:** the four support variables of 7.2.2 overlap (same topic), so one score summarises them and answers question 2 with a single chart.
+- **Only "Yes" counts 1; "No", "Don't know" and "Not sure" count 0.** Simple and easy to explain. Consequence: score 0 mixes "no support" and "does not know". Written as a limit.
+- **`anonymity` added to the four variables of 7.2.2:** it is also something the employer offers.
+- **`support_score` is not saved in `survey_clean.csv`**, same as `age_group`: it is an analysis choice. `identities` is saved because it comes from the cleaning.
+
+### Alternatives rejected
+
+- `company_size_group`: 7.2.1 showed no clear trend with company size, so the chart would be flat.
+- `openness_score` (supervisor, coworkers, mental_health_consequence): "Yes" means opposite things in these columns, hard to explain.
+- Year or month from `Timestamp`: 95% of the answers are from 2014.
+- 0.5 for "Don't know": more complex without a clear reason.
+
+### Results (% with `treatment = Yes`, by `support_score`)
+
+- 0: 36.8% (n=517), 1: 53.0% (251), 2: 58.6% (203), 3: 70.4% (115), 4: 65.2% (92), 5: 66.7% (81).
+- Clear rise from 0 to 3 (about 34 points), then flat around 65-70%.
+
+### Limits found (for section 9)
+
+- Scores 4 and 5 have 92 and 81 people: indicative only.
+- A relation is not a cause: people who seek treatment may know the company resources better (reverse direction).
+- Score 0 is the biggest group partly because 819 people answered "Don't know" on `anonymity`.
+
+### Where we stopped
+
+- Issue #13 done. Next: README (#10, waiting), #14 correlation heatmap, #15 trends or group comparison, #16 executive report.
+
+---
+
 ## 2026-11-06: Group and summarize (section 7.4)
 
 ### What was done
