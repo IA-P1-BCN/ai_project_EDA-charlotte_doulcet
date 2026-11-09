@@ -5,6 +5,40 @@ Entry format: what was done, decisions and why, alternatives rejected, where we 
 
 ---
 
+## 2026-11-09: Correlation matrix and heatmap (section 7.6)
+
+### What was done
+
+- Added section 7.6: `df_num` (all Yes/No columns as 0/1), correlation matrix, heatmap (lower triangle only) and a written interpretation with limits.
+- 17 variables: 5 pure Yes/No, 8 multi-answer columns as "Yes = 1, rest = 0", the 3 identity groups (`is_male`, `is_female`, `is_trans_other`) and `Age`.
+
+### Decisions and why
+
+- **Separate table `df_num`:** `df_clean` keeps its text columns.
+- **Multi-answer columns as "is Yes":** same rule as `support_score`, so "Don't know", "Not sure", "Maybe" and "Some of them" count as 0. Simple, but it merges them with "No"; written as a limit.
+- **`identities` as 3 columns (one-hot), not one:** a single 0/1/2 column would suggest an order that does not exist, and `is_female` alone would merge men and the third group in the 0. Three columns keep the 3 groups visible, as in the rest of the analysis (Charlotte's choice). Side effect: `is_male` and `is_female` are almost mirrors (-0.97); noted in the text.
+- **Left out:** `support_score` (sum of columns already in the matrix), `self_employed` (3 values, 146 Yes), columns with many categories (`Country`, `no_employees`, `leave`, `work_interfere`).
+- **Pearson on 0/1 columns** (phi coefficient) and a simple reading rule: <0.1 almost nothing, 0.1-0.3 weak, 0.3-0.5 moderate, >0.5 strong.
+
+### Results
+
+- With `treatment`: `family_history` 0.38, `care_options` 0.27, `benefits` 0.21, `is_male` -0.19, `is_female` 0.18, `obs_consequence` 0.16, `anonymity` 0.13, `mental_health_consequence` 0.10; the rest below 0.1 (`is_trans_other` 0.06). No variable passes 0.4.
+- Strongest pairs: `wellness_program`-`seek_help` 0.60, `benefits`-`seek_help` 0.45, `supervisor`-`coworkers` 0.43, `benefits`-`care_options` 0.43. `mental_health_consequence`-`supervisor` is -0.35 because "Yes" means opposite things.
+- Confirms 7.2 and shows that the support variables overlap (the reason for `support_score`).
+
+### Limits found (for section 9)
+
+- Correlation is not cause (reverse direction possible).
+- 0/1 correlation depends on group sizes (rare "Yes" caps the value); only linear, pairwise relations; "Yes = 1, rest = 0" loses the "Don't know" vs "No" difference.
+- `Age` correlation is weak (0.07) although 7.2.1 showed a soft trend.
+- `is_trans_other` (14 people) has a correlation of 0.06 with `treatment` although its rate is 78.6% in 7.2.1: tiny groups weigh little in a correlation; unreliable.
+
+### Where we stopped
+
+- Issue #14 done (waiting for review and merge). Next: README (#10, waiting), #15 trends or group comparison, #16 executive report.
+
+---
+
 ## 2026-11-09: Feature engineering (section 7.5)
 
 ### What was done
